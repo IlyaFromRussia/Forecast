@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Forecast</string>
+    <string name="city_is_not_defined">City is not defined</string>
+    <string name="temperature">temperature</string>
+    <string name="problem">Ошибка соединения с OpenWeather</string>
+    <string name="choose_city">Выберите город</string>
+    <string name="enter_city_name">Введите название города</string>
+    <string name="check_city">Проверить город</string>
+    <string name="empty_city_name">Название города не может быть пустым</string>
+    <string name="cannot_find_city">Не удалось найти указанный город</string>
+</resources>
