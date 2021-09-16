@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
 import android.location.LocationManager
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import com.ilrcompany.forecast.ForecastService
 import com.ilrcompany.forecast.MyLocationListener
@@ -17,7 +18,7 @@ import kotlinx.coroutines.launch
 import kotlin.math.*
 
 
-class Model(private val recyclerView: RecyclerView, private val activity: MainActivity) {
+class Model(private val recyclerView: RecyclerView, val activity: MainActivity) {
 
     lateinit var locationManager : LocationManager
     private  var dataBaseUtil : DataBaseUtil = DataBaseUtil(activity.applicationContext)
@@ -120,6 +121,7 @@ class Model(private val recyclerView: RecyclerView, private val activity: MainAc
 
         for (city in listCity){
             listDistance.add(calculateDistance(lat, lon, city.lat.toDouble(), city.lon.toDouble()))
+            Log.d("Model:GetCloserCity","${city.cityName} ${city.lat} ${city.lon}")
         }
         val min = listDistance.minOrNull()
 

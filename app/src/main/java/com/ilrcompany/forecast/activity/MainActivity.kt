@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var temperature: TextView
     private lateinit var activityLauncher : ActivityResultLauncher<Void>
     private lateinit var model : Model
+    private lateinit var progresaBar : ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         cityName = findViewById(R.id.city_name)
         temperature = findViewById(R.id.temperature)
         recyclerView = findViewById(R.id.weather_day_list)
+        progresaBar = findViewById(R.id.progress_bar)
 
         navigate.setOnClickListener{
             checkPermission()
@@ -82,6 +85,8 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         setBackgroundAndImageAccordingTime() // для обработки возобновления активности после 19 часов
+        navigate.isEnabled = true
+        search.isEnabled = true
     }
 
     fun setCityNameAndTemperature(name : String, temp : String){
@@ -104,7 +109,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setCloserCity(){
+        navigate.isClickable = false
+        search.isClickable = false
         model.setCloserCity()
+        progresaBar.visibility = ProgressBar.VISIBLE
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -120,6 +128,12 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun hideProgressBarAndActivateButton(){
+        progresaBar.visibility = ProgressBar.INVISIBLE
+        navigate.isClickable = true
+        search.isClickable = true
     }
 
 }

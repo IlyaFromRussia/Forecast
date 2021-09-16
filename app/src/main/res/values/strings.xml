@@ -8,4 +8,5 @@
     <string name="check_city">Проверить город</string>
     <string name="empty_city_name">Название города не может быть пустым</string>
     <string name="cannot_find_city">Не удалось найти указанный город</string>
+    <string name="gps_error">GPS выключен</string>
 </resources>
